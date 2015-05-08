@@ -109,6 +109,29 @@ $ nc -k -u -l 192.168.11.11 3457 0<pipe | tee p.log | nc -u 127.0.0.1 3457 1>pip
 
 and it does (sort of), but you only ever get one measurement (log message) coming out on the firehose. Kill the process and start again and you get another.
 
+### Tunnels and Netcats
+
+For TCP you can set up a chat between 2 nc processes, but with UDP it seems to stop after the first message.
+
+```$ nc -k -l 127.0.0.1 1234
+```
+
+and
+
+```$ echo foo | nc 127.0.0.1 1234
+```
+
+Do the echo 3 times and you get `foofoofoo` on the first console. But it doesn't work the same way with `nc -u` - you only get one foo.
+
+### IPTables
+
+This appears to work (in VirtualBox, for EC2 use `eth0` instead of `eth1`):
+
+```
+$ sudo bash -c 'echo 1 >  /proc/sys/net/ipv4/conf/eth1/route_localnet'
+$ sudo iptables -t nat -A PREROUTING -p udp -i eth1 --dport 3457 -j DNAT --to-destination 127.0.0.1:3457
+```
+
 ## Useful Links
 
 [https://github.com/cloudfoundry/dropsonde-protocol](https://github.com/cloudfoundry/dropsonde-protocol)
