@@ -1,24 +1,21 @@
-Sample app for pushing Spring Boot metrics to [doppler](https://github.com/cloudfoundry/loggregator) (a.k.a. loggregator).
+Library and sample app for pushing Spring Boot metrics to [doppler](https://github.com/cloudfoundry/loggregator) (a.k.a. loggregator).
 
 ## Prerequisites
 
-You need Java (8) and Maven (3) to build the app. You also need some extended features for the Spring Boot Actuator currently residing in [the `feature/metrics` branch of a fork of Spring Boot](https://github.com/dsyer/spring-boot/tree/feature/metrics):
+You need Java (8) and Maven (3) to build the this project.
+
+## Building the Project
 
 ```
-$ git clone https://github.com/dsyer/spring-boot
-$ git checkout feature/metrics
-$ export JAVA_HOME=/path/to/jdk1.8.0 # if it isn't already
-$ mvn install -P prepare -DskipTests=true
-$ mvn install -DskipTests=true
+$ mvn install
 ```
-
-(This stuff will be merged into Spring Boot 1.3.0 at some point.)
 
 ## Running the Application Locally
 
 If you have network connectivity into a doppler host (e.g. a Vagrant VM at 192.168.11.11), you can run the app locally and pump metrics:
 
 ```
+$ cd spring-boot-metrics-doppler-sample
 $ export DOPPLER_HOST=192.168.11.11
 $ mvn spring-boot:run
 ```

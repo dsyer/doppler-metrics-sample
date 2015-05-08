@@ -7,9 +7,10 @@
 .settings
 .springBeans
 .gradle
-build
-bin
-/target/
+.factorypath
+build/
+bin/
+target/
 git.properties
 .idea
 *.iml
