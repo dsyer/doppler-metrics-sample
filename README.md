@@ -7,7 +7,8 @@ You need Java (8) and Maven (3) to build the app. You also need some extended fe
 ```
 $ git clone https://github.com/dsyer/spring-boot
 $ git checkout feature/metrics
-$ mvn install -P prepare
+$ export JAVA_HOME=/path/to/jdk1.8.0 # if it isn't already
+$ mvn install -P prepare -DskipTests=true
 $ mvn install -DskipTests=true
 ```
 
