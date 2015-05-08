@@ -14,20 +14,39 @@
  * limitations under the License.
  */
 
-package demo;
+package org.springframework.boot.actuate.metrics.doppler;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.ObjectUtils;
 
 /**
+ * @author Vinicius Carvalho
  * @author Dave Syer
- *
  */
 @ConfigurationProperties("spring.metrics.doppler")
 public class DopplerProperties {
+
+	/**
+	 * Host that metron or doppler is running on.
+	 */
+	private String host = "192.168.11.11";
+
+	/**
+	 * Port to send metrics on the host. Metron always listens on 3457, but doppler
+	 * sometimes sits on 3458 (e.g. in lattice).
+	 */
+	private int port = 3457;
+
+	/**
+	 * Key identifying origin of metrics. Set to something unique for your application and
+	 * instance.
+	 */
+	private String origin = "spring.application." + ObjectUtils.getIdentityHexString(this);
+
+	/**
+	 * Secret to use if signing messages (only necessary if sending directly to doppler).
+	 */
 	private String secret;
-	private String host;
-	private Integer port;
-	private String origin;
 
 	public String getOrigin() {
 		return this.origin;
@@ -53,11 +72,11 @@ public class DopplerProperties {
 		this.host = host;
 	}
 
-	public Integer getPort() {
+	public int getPort() {
 		return this.port;
 	}
 
-	public void setPort(Integer port) {
+	public void setPort(int port) {
 		this.port = port;
 	}
 }

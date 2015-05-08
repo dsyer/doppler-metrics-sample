@@ -1,15 +1,15 @@
-package demo;
+package org.springframework.boot.actuate.metrics.doppler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.actuate.metrics.doppler.events.Metric;
+import org.springframework.boot.actuate.metrics.doppler.events.EnvelopeOuterClass.Envelope;
 import org.springframework.boot.actuate.metrics.writer.Delta;
 import org.springframework.boot.actuate.metrics.writer.MetricWriter;
 
-import events.EnvelopeOuterClass.Envelope;
-import events.Metric;
-
 /**
- * Created by vcarvalho on 4/16/15.
+ * @author Vinicius Carvalho
+ * @author Dave Syer
  */
 public class DopplerMetricWriter implements MetricWriter {
 

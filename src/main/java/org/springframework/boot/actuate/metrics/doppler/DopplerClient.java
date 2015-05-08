@@ -1,4 +1,4 @@
-package demo;
+package org.springframework.boot.actuate.metrics.doppler;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
@@ -14,12 +14,12 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 
 import java.net.InetSocketAddress;
 
+import org.springframework.boot.actuate.metrics.doppler.events.EnvelopeOuterClass;
 import org.springframework.util.StringUtils;
 
-import events.EnvelopeOuterClass;
-
 /**
- * Created by vcarvalho on 4/17/15.
+ * @author Vinicius Carvalho
+ * @author Dave Syer
  */
 public class DopplerClient {
 
